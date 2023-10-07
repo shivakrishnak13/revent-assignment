@@ -1,45 +1,127 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ProductCard } from "../components/ProductCard";
 import SideBar, { Sidebar } from "../components/Sidebar";
 import { ProductList } from "../components/ProductList";
 import styled from "styled-components";
-import { Text } from "@chakra-ui/react";
-import {BiSort} from "react-icons/bi";
-import {MdFilterAlt} from "react-icons/md";
+import { Button, RangeSlider, RangeSliderFilledTrack, RangeSliderThumb, RangeSliderTrack, Text } from "@chakra-ui/react";
+import { BiSort } from "react-icons/bi";
+import { MdFilterAlt } from "react-icons/md";
+import { HiOutlineCurrencyRupee } from "react-icons/hi";
 
 export const ProductPage = () => {
+  const [isOptions, toggleOptions] = useState(false);
+  const [toggleSortFilter, setToggle] = useState(false);
+  const optionsRef = useRef(null);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+        toggleOptions(false);
+      }
+    };
 
-  const [isOptions ,toggleOptions] = useState(false);
-  const [toggleSortFilter ,setToggle] = useState(false);
+    document.addEventListener("click", handleClickOutside);
 
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
+  const [sliderValues, setSliderValues] = useState([0, 80]);
+
+  const handleSliderChange = (newValues) => {
+    setSliderValues(newValues);
+  };
 
   return (
     <DIV>
       <Sidebar />
       <ProductList />
-      <div className="mobileoptions">
-          <div className={`options ${isOptions ? 'show' : ''}`}>
+      <div className="mobileoptions" ref={optionsRef}>
+        <div className={`options ${isOptions ? "show" : ""}`}>
+          {toggleSortFilter ? (
+            <div className="sort">
+              <Text className="headingsort">Sort By</Text>
+              <div className="sortoptions">
+                <div className="price">
+                  <HiOutlineCurrencyRupee />
+                  <Text>Price: Hight to Low</Text>
+                </div>
+                <div className="price">
+                  <HiOutlineCurrencyRupee />
+                  <Text>Price: Low to High</Text>
+                </div>
+              </div>
+              <div className="buttons">
+                <Button background={'red'}>Clear</Button>
+              </div>
+            </div>
+          ) : (
+            <div className="filter">
+              <Text className="headingsort">Filter By</Text>
+              <div className="range_filter">
+                <Text className="headingsfilter">PRICE</Text>
+                <RangeSlider
+                  aria-label={["min", "max"]}
+                  defaultValue={sliderValues}
+                  onChange={handleSliderChange}
+                  mt={10}
+                  ml={5}
+                  w={"90%"}
+                >
+                  <RangeSliderTrack>
+                    <RangeSliderFilledTrack />
+                  </RangeSliderTrack>
+                  <RangeSliderThumb index={0}>
+                    <div className="thumb_value">
+                      {sliderValues[0] * 1000}
+                    </div>
+                  </RangeSliderThumb>
+                  <RangeSliderThumb index={1}>
+                    <div className="thumb_value">
+                      {sliderValues[1] * 1000}
+                    </div>
+                  </RangeSliderThumb>
+                </RangeSlider>
+              </div>
+              <div className="buttons">
+                <Button backgroundColor={'teal'}>Apply</Button>
+                <Button background={'red'}>Clear</Button>
+              </div>
+            </div>
+          )}
+        </div>
 
-            <div className="sort">Sort</div>
-            <div className="filter">Filter</div>
-
-
+        <div className="headings">
+          <div
+            className="icons"
+            onClick={() => {
+              if (isOptions) {
+                setToggle(true);
+              } else {
+                toggleOptions(!isOptions);
+                setToggle(true);
+              }
+            }}
+          >
+            <BiSort className="icon" />
+            <Text>SORT</Text>
           </div>
-         
-           
-         
-           <div className="headings">
-            <div className="icons" onClick={()=> toggleOptions(!isOptions)}>
-              <BiSort className="icon"/>
-              <Text>SORT</Text>
-            </div>
-            <div className="icons" onClick={()=> toggleOptions(!isOptions)}>
-              <MdFilterAlt className="icon"/>
-              <Text>Filter</Text>
-            </div>
-           </div>
+          <div
+            className="icons"
+            onClick={() => {
+              if (isOptions) {
+                setToggle(false);
+              } else {
+                toggleOptions(!isOptions);
+                setToggle(false);
+              }
+            }}
+          >
+            <MdFilterAlt className="icon" />
+            <Text>Filter</Text>
+          </div>
+        </div>
       </div>
     </DIV>
   );
@@ -50,58 +132,102 @@ const DIV = styled.div`
   margin: 100px auto;
   display: flex;
 
-  .mobileoptions{
-     position: fixed;
-     bottom: 0;
-     right: 0;
-     left: 0;
-     padding: 10px 20px;
-     
-     
+  .mobileoptions {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: none;
   }
 
-  .icons{
+  .icons {
     width: 10%;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     cursor: pointer;
   }
 
-  .icon{
+  .icon {
     width: 1.5rem;
     height: 1.5rem;
   }
 
-  .headings{
+  .headings {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    
+    padding: 10px 50px;
   }
 
-  
-  
-  
-  .options{
+  .options {
     width: 100%;
     height: 200px;
-    border: 1px solid green;
-    transform: translateY(100%); 
-    transition: transform 0.3s ease;
+    border-top: 1px solid rgba(27, 31, 35, 0.15);
+    transform: translateY(200%);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
   }
-  
-  
+
   .options.show {
-  
-  transform: translateY(0); 
+    transform: translateY(0);
+    transition: opacity 0.3s ease-in, transform 0.3s ease-in;
   }
 
+  @media screen and (max-width: 749px) {
+    .mobileoptions {
+      display: block;
+    }
 
+    .price {
+      display: flex;
+      align-items: center;
+      padding: 5px;
 
+      p {
+        margin-left: 5px;
+      }
+    }
 
-  @media screen and (max-width:760px) {
-     display: block;
+    .headingsort {
+      font-size: 1.5rem;
+      font-weight: 600;
+      font-family: "Poppins", sans-serif;
+      border-bottom: 1px solid rgba(27, 31, 35, 0.15);
+      padding-left: 5px;
+      margin-top: 3px;
+      margin-bottom: 3px;
+    }
+
+    .thumb_value{
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  .headingsfilter{
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: 'Poppins',sans-serif ;
+    padding: 5px;
+  }
+
+  .buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5px;
+  }
+
+  }
+  @media screen and (max-width: 700px) {
+    .icons {
+      width: 20%;
+    }
   }
 `;

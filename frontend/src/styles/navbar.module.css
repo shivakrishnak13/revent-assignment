@@ -47,7 +47,7 @@
   background: linear-gradient(90deg, rgba(172, 189, 255, 1) 8%, rgb(143, 222, 186) 100%);
   opacity: 0;
   transform: translateY(-100%);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 .open {
