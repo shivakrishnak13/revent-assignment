@@ -131,6 +131,7 @@ const DIV = styled.div`
   width: 90%;
   margin: 100px auto;
   display: flex;
+  
 
   .mobileoptions {
     position: fixed;
@@ -159,6 +160,9 @@ const DIV = styled.div`
     display: flex;
     justify-content: space-around;
     padding: 10px 50px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    z-index: 1000;
   }
 
   .options {

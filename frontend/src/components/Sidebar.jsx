@@ -18,6 +18,8 @@ export const Sidebar = () => {
   const handleSliderChange = (newValues) => {
     setSliderValues(newValues);
   };
+
+
   return (
     <div className={styles.mainsidebar}>
       <div className={styles.allfilters}>
@@ -43,15 +45,15 @@ export const Sidebar = () => {
             </RangeSliderThumb>
           </RangeSlider>
 
-          <div className={styles.sliderval} value={sliderValues[0]*1000} onChange={(e)=> handleSliderChange(+(e.target.value/1000))}>
-          <Select placeholder='Min' size='xs' w={'100px'} >
+          <div className={styles.sliderval} value={sliderValues[0]*1000} >
+          <Select placeholder='min' size='xs' w={'100px'} >
             <option value="500">500</option>
             <option value="1000">1000</option>
             <option value="5000">5000</option>
             <option value={sliderValues[0]*1000}>{sliderValues[0]*1000}</option>
           </Select>
           <p>to</p>
-          <Select placeholder='max' size='xs'  w={'100px'} value={sliderValues[1]*1000} onChange={(e)=> handleSliderChange((+e.target.value/1000))}>
+          <Select placeholder='max' size='xs'  w={'100px'} value={sliderValues[1]*1000} >
             <option value="1000">10000</option>
             <option value="20000">20000</option>
             <option value="100000">10000</option>
