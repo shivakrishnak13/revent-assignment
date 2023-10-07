@@ -1,5 +1,4 @@
 /* Google Fonts - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 * {
   margin: 0;
@@ -13,28 +12,162 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 15px 200px;
-  background: #4a98f7;
+  padding: 10px 50px;
+  background: linear-gradient(90deg, rgba(172, 189, 255, 1) 8%, rgb(143, 222, 186) 100%);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
 }
 
+.categories {
+  width: 40%;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.categories li {
+  cursor: pointer;
+}
+
+.search_box {
+  width: 25%;
+}
+
+.mobile{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10rem;
+  background: linear-gradient(90deg, rgba(172, 189, 255, 1) 8%, rgb(143, 222, 186) 100%);
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+.open {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in; 
+}
+.menu{
+  display: none;
+}
+
+.mobilecategories{
+  margin-top: 40px;
+  text-align: center;
+  border-bottom: 0.5px solid black;
+}
+.mobilecategories li{
+  list-style: none;
+  border-top: 0.5px solid black;
+  cursor: pointer;
+  
+}
+
+
+
 /* responsive */
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 1172px) {
   .nav {
     padding: 15px 100px;
   }
-  
+
+  .categories{
+    display: none;
+  }
+
+  .search_box {
+    width: 50%;
+    
+  }
+
+  .menu{
+    display: block;
+  }
+  .hamburger{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .icon{
+    width: 1rem;
+    height: 1rem;
+  }
+
 }
+
 @media screen and (max-width: 950px) {
   .nav {
     padding: 15px 50px;
   }
- 
+
+  .categories{
+    display: none;
+  }
+
+  .search_box {
+    width: 50%;
+    
+  }
+
+  .menu{
+    display: block;
+  }
+  .hamburger{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .icon{
+    width: 1rem;
+    height: 1rem;
+  }
 }
+
 @media screen and (max-width: 768px) {
- 
+
   .nav {
-    padding: 15px 20px;
+    padding: 8px 15px;
+    font-size: small;
+  }
+
+  .categories{
+    display: none;
+  }
+
+  .search_box {
+    width: 50%;
+    
+  }
+
+  .search_box input::placeholder {
+    font-size: small;
+    
+  }
+
+  .search_box input{
+    height: 35px;
   }
   
+  .icon{
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .menu{
+    display: block;
+  }
+
+  .hamburger{
+    width: 1rem;
+    height: 1rem;
+  }
+
 }

@@ -1,0 +1,109 @@
+.mainsidebar{
+    background-color: #fff;
+    width: 25%;
+    height: max-content;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.allfilters{
+    
+    margin: auto;
+}
+
+.filterheading{
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    padding-left: 1rem;
+    margin: 10px 0 10px 0;
+}
+
+.rangefilter{
+    border-bottom: 1px solid rgba(27, 31, 35, 0.15) ;
+    border-top: 1px solid rgba(27, 31, 35, 0.15);
+    
+    padding: 10px 0 15px 1rem;
+}
+
+.headings{
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+}
+
+.thumb_value{
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    background-color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sliderval{
+    margin-top: 10px;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+.offers{
+    border-bottom: 1px solid rgba(27, 31, 35, 0.15) ;
+    
+    padding: 10px 0 15px 1rem;
+}
+.dicountsmain{
+   
+    
+    padding: 10px 0 15px 1rem;
+}
+
+.dicounts{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1rem;
+}
+
+
+@media screen and (min-width:750px) and (max-width:1138px) {
+   
+    .filterheading{
+        font-size: 0.5rem;
+        font-weight: 400;
+        padding-left: .8rem;
+        margin: 8px 0 8px 0;
+    }
+    .rangefilter{
+        padding: 10px 0 10px 0.8rem;
+    }
+    .thumb_value{
+        font-size: 10px;
+    }
+    .headings{
+        font-size: 0.8rem;
+    }
+    .sliderval{
+        width: 80%;
+    }
+    .offers .dicountsmain{
+        padding: 8px 0 10px 0.8rem;
+    }
+    .checkbox span{
+        font-size: 0.7rem;
+    }
+}
+
+
+@media screen and (max-width:750px){
+    .mainsidebar{
+        display: none;
+    }
+}
