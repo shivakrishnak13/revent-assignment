@@ -7,11 +7,21 @@ import { Button, RangeSlider, RangeSliderFilledTrack, RangeSliderThumb, RangeSli
 import { BiSort } from "react-icons/bi";
 import { MdFilterAlt } from "react-icons/md";
 import { HiOutlineCurrencyRupee } from "react-icons/hi";
+import { GiStarsStack } from "react-icons/gi";
+import { useSearchParams } from "react-router-dom";
 
 export const ProductPage = () => {
   const [isOptions, toggleOptions] = useState(false);
   const [toggleSortFilter, setToggle] = useState(false);
   const optionsRef = useRef(null);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [_order, setOrder] = useState("");
+  const [_sort, setsort] = useState("");
+  const [sliderValues, setSliderValues] = useState([0, 80]);
+  const initialRating = searchParams.getAll("rating");
+  
+
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -22,15 +32,38 @@ export const ProductPage = () => {
 
     document.addEventListener("click", handleClickOutside);
 
+    let params ={
+      sort : _sort,
+      order:  _order ,
+   }
+
+   setSearchParams(params);
+
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [_sort,_order]);
 
-  const [sliderValues, setSliderValues] = useState([0, 80]);
 
   const handleSliderChange = (newValues) => {
     setSliderValues(newValues);
+  };
+
+  const handleSort = (value) => {
+    
+    if (value == "asc") {
+      setsort("price");
+      setOrder("asc");
+    } else if (value == "desc") {
+      setsort("price");
+      setOrder("desc");
+    } else {
+      setsort("rating");
+      setOrder("desc");
+    }
+
+   
+    toggleOptions(false);
   };
 
   return (
@@ -45,11 +78,15 @@ export const ProductPage = () => {
               <div className="sortoptions">
                 <div className="price">
                   <HiOutlineCurrencyRupee />
-                  <Text>Price: Hight to Low</Text>
+                  <Text onClick={()=> handleSort("asc")}>Price: Low to High</Text>
                 </div>
                 <div className="price">
                   <HiOutlineCurrencyRupee />
-                  <Text>Price: Low to High</Text>
+                  <Text onClick={()=> handleSort("desc")}>Price: Hight to Low</Text>
+                </div>
+                <div className="price">
+                  <GiStarsStack />
+                  <Text onClick={()=> handleSort("rating")}>Customer Rating</Text>
                 </div>
               </div>
               <div className="buttons">
@@ -138,7 +175,6 @@ const DIV = styled.div`
     bottom: 0;
     right: 0;
     left: 0;
-    background-color: whitesmoke;
     display: none;
   }
 
@@ -172,6 +208,7 @@ const DIV = styled.div`
     border-top: 1px solid rgba(27, 31, 35, 0.15);
     transform: translateY(200%);
     transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    background-color: white;
   }
 
   .options.show {

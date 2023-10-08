@@ -18,14 +18,14 @@ export const Sidebar = () => {
   const [sliderValues, setSliderValues] = useState([0, 80]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const initialCategory = searchParams.get("category");
+  
   const initialPrice = searchParams.get("price");
   const initialRating = searchParams.getAll("rating");
   const intialPriceRange = searchParams.get("pricerange");
   const intialOffers = searchParams.getAll("offers");
   const intialDiscount = searchParams.get("discount");
 
-  const [category, setCategory] = useState(initialCategory || "");
+ 
   const [rating, setRating] = useState(initialRating || []);
   const [offers, setOffers] = useState(intialOffers || []);
   const [discount, setDiscount] = useState(intialDiscount || []);
@@ -74,6 +74,8 @@ export const Sidebar = () => {
   };
 
   
+
+  
   const handleDsicount = (e) => {
     const { value } = e.target;
     console.log(value);
@@ -105,7 +107,7 @@ export const Sidebar = () => {
       rating,
       discount,
     };
-  setSearchParams(params);
+     setSearchParams(params);
   }
 
   return (
@@ -173,7 +175,7 @@ export const Sidebar = () => {
               onChange={handleRating}
               defaultChecked={rating.includes("4")}
             >
-              {" "}
+              
               4★ & above
             </Checkbox>
             <Checkbox
@@ -182,7 +184,7 @@ export const Sidebar = () => {
               onChange={handleRating}
               defaultChecked={rating.includes("3")}
             >
-              {" "}
+              
               3★ & above
             </Checkbox>
             <Checkbox
@@ -191,7 +193,7 @@ export const Sidebar = () => {
               onChange={handleRating}
               defaultChecked={rating.includes("2")}
             >
-              {" "}
+              
               2★ & above
             </Checkbox>
             <Checkbox
@@ -200,7 +202,7 @@ export const Sidebar = () => {
               onChange={handleRating}
               defaultChecked={rating.includes("1")}
             >
-              {" "}
+              
               1★ & above
             </Checkbox>
           </div>
@@ -215,7 +217,7 @@ export const Sidebar = () => {
               onChange={handleOffers}
               defaultChecked={offers.includes("no_cost_emi")}
             >
-              {" "}
+              
               No Cost EMI
             </Checkbox>
             <Checkbox
@@ -224,7 +226,7 @@ export const Sidebar = () => {
               onChange={handleOffers}
               defaultChecked={offers.includes("credit_card")}
             >
-              {" "}
+              
               Credit Card Offers
             </Checkbox>
             <Checkbox
@@ -233,8 +235,8 @@ export const Sidebar = () => {
               onChange={handleOffers}
               defaultChecked={offers.includes("buy_1_get_1")}
             >
-              {" "}
-              Byy 1 Get 1
+              
+              Buy 1 Get 1
             </Checkbox>
           </div>
         </div>
@@ -248,7 +250,7 @@ export const Sidebar = () => {
               onChange={handleDsicount}
               defaultChecked={discount.includes("50")}
             >
-              {" "}
+              
               50% or more
             </Checkbox>
             <Checkbox
@@ -257,7 +259,7 @@ export const Sidebar = () => {
               onChange={handleDsicount}
               defaultChecked={discount.includes("40")}
             >
-              {" "}
+              
               40% or more
             </Checkbox>
             <Checkbox
@@ -266,7 +268,7 @@ export const Sidebar = () => {
               onChange={handleDsicount}
               defaultChecked={discount.includes("30")}
             >
-              {" "}
+              
               30% or more
             </Checkbox>
             <Checkbox
@@ -275,7 +277,7 @@ export const Sidebar = () => {
               onChange={handleDsicount}
               defaultChecked={discount.includes("20")}
             >
-              {" "}
+              
               20% or more
             </Checkbox>
             <Checkbox
@@ -284,7 +286,7 @@ export const Sidebar = () => {
               onChange={handleDsicount}
               defaultChecked={discount.includes("10")}
             >
-              {" "}
+              
               10% or more
             </Checkbox>
           </div>
