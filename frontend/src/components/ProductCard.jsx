@@ -54,7 +54,7 @@ export const ProductCard = ({
         >
           {images.map((imageUrl, index) => (
             <SwiperSlide key={index}>
-              <img className="img" src={imageUrl} alt={`Slide ${index + 1}`} />
+              <img className="prod_img" src={imageUrl} alt={`Slide ${index + 1}`} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -65,7 +65,7 @@ export const ProductCard = ({
       )}
 
       <div className="details">
-        <h2>{maincategory}</h2>
+        <h2>{maincategory=='home_appliances'? "Home Appliances" : maincategory}</h2>
         <h3>{title}</h3>
         <div className="description">{description}</div>
         <div className="rating">
@@ -94,40 +94,27 @@ const DIV = styled.div`
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
       border-radius: 0.5rem;
     }
-    .img {
-      transform: scale(1.05);
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
-      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    
+  }
+  
 
-      border: 2px solid red;
-    }
-    .image {
+  .prod_img {
     width: 100%;
-
-    img {
-      width: 100%;
-      border-top-left-radius: 0.5rem;
-      border-top-right-radius: 0.5rem;
-      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-    }
-  }
-  }
-
-  .img {
+    height: 100%;
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
       rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+      object-fit: contain;
   }
 
   .image {
     width: 100%;
-
+    height: 300px;
     img {
       width: 100%;
+      height: 100%;
+      object-fit: contain;
       border-top-left-radius: 0.5rem;
       border-top-right-radius: 0.5rem;
       box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
@@ -158,7 +145,10 @@ const DIV = styled.div`
 
   .mySwiper {
     width: 100%;
+    height: 300px;
+    margin: auto;
     z-index: -10;
+    
   }
 
   .description {

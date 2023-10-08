@@ -138,6 +138,7 @@ const DIV = styled.div`
     bottom: 0;
     right: 0;
     left: 0;
+    background-color: whitesmoke;
     display: none;
   }
 
@@ -178,6 +179,18 @@ const DIV = styled.div`
     transition: opacity 0.3s ease-in, transform 0.3s ease-in;
   }
 
+  .buttons{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5px;
+    font-size: .5rem;
+    button{
+      width: 60px;
+      height: 40px;
+    }
+  }
   @media screen and (max-width: 749px) {
     .mobileoptions {
       display: block;
