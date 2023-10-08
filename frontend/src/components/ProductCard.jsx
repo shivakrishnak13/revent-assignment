@@ -6,6 +6,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import StarRating from "./StarRating";
+
 
 export const ProductCard = ({
   id,
@@ -17,6 +19,25 @@ export const ProductCard = ({
   images,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+
+  function truncateDescription(description) {
+    const maxLength = 40; 
+    if (description.length <= maxLength) {
+      return description; 
+    }
+  
+    const truncatedDescription = description.slice(0, maxLength);
+  
+    if (truncatedDescription[truncatedDescription.length - 1] === " ") {
+      return `${truncatedDescription.slice(0, -1)}...`;
+    }
+    const lastSpaceIndex = truncatedDescription.lastIndexOf(" ");
+    return `${truncatedDescription.slice(0, lastSpaceIndex)}...`;
+  }
+  
+
+  
 
   return (
     <DIV
@@ -55,7 +76,11 @@ export const ProductCard = ({
         <p>
           <strong>₹{price}.0</strong>
         </p>
-        <div className="description">{description}</div>
+        <div className="rating">
+
+        <StarRating rating={rating}/> 
+        </div>
+        <div className="description">{truncateDescription(description)}</div>
       </div>
     </DIV>
   );
@@ -83,7 +108,6 @@ const DIV = styled.div`
     padding: 10px;
     h2 {
       font-weight: bold;
-      margin-bottom: 0.4em;
       color: #6c757d;
       text-transform: uppercase;
       letter-spacing: -0.025em;
@@ -91,8 +115,13 @@ const DIV = styled.div`
       word-wrap: break-word;
     }
     h3 {
-      font-size: 19px;
-      font-family: "Balsamiq Sans", cursive;
+      font-size: 1.2rem;
+      margin-bottom: 0.2em;
+      font-family: "Poppins", sans-serif;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -103,15 +132,14 @@ const DIV = styled.div`
   }
 
   .description {
-      font-size: 12px;
+      font-size: .8rem;
       line-height: 1.5;
-      max-height: 2em; 
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2; 
-      -webkit-box-orient: vertical;
+      color: #535766;
     }
+
+   .rating{
+    padding: 4px 0;
+   }
 
   @media screen and (max-width:1291px){
     .details{
