@@ -16,13 +16,30 @@ export const ProductList = () => {
 
 
   const maincategory = searchParams.get("category");
-  const rating = searchParams.get("rating");
-  const priceRange = searchParams.get("pricerange");
-  const offers = searchParams.get("offers");
-  const discount = searchParams.get("discount");
+  const rating = searchParams.getAll("rating");
+  const priceFrom = searchParams.get("pricefrom");
+  const priceTo = searchParams.get("priceto");
+  const offer = searchParams.getAll("offers");
+  const discount = searchParams.getAll("discount");
   const location = useLocation();
 
   const dispatch = useDispatch();
+
+  const findSmallestNumber = (array) => {
+    if (array.length === 0) {
+      return 0;
+    }
+  
+    let smallest = +array[0];
+    for (let i = 1; i < array.length; i++) {
+      if (array[i] < smallest) {
+        smallest = array[i];
+      }
+    }
+  
+    return smallest;
+  }
+
 
 
   useEffect(() => {
@@ -30,11 +47,19 @@ export const ProductList = () => {
       params : {
         maincategory: maincategory || "clothing",
           _order,
-          _sort
+          _sort,
+          price_gte: +priceFrom ,
+          price_lte : +priceTo || 10000,
+          offer,
+          rating_gte: findSmallestNumber(rating),
+          discount_gte : findSmallestNumber(discount),
       }
+
+      
+
     }
 
-    console.log(paramsObj)
+    // console.log(paramsObj)
     dispatch(getProducts(paramsObj));
   }, [location.search,(_sort && _order)]);
 
@@ -52,7 +77,7 @@ export const ProductList = () => {
     }
   }
 
-  // console.log(data);?
+  //  console.log(discount);
 
   return (
     <DIV>

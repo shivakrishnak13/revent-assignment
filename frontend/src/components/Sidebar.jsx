@@ -20,15 +20,15 @@ export const Sidebar = () => {
 
   const initialCategory = searchParams.get("category");
   const initialPrice = searchParams.get("price");
-  const initialRating = searchParams.get("rating");
+  const initialRating = searchParams.getAll("rating");
   const intialPriceRange = searchParams.get("pricerange");
-  const intialOffers = searchParams.get("offers");
+  const intialOffers = searchParams.getAll("offers");
   const intialDiscount = searchParams.get("discount");
 
   const [category, setCategory] = useState(initialCategory || "");
-  const [rating, setRating] = useState(initialRating || "");
-  const [offers, setOffers] = useState(intialOffers || "");
-  const [discount, setDiscount] = useState(intialDiscount || "");
+  const [rating, setRating] = useState(initialRating || []);
+  const [offers, setOffers] = useState(intialOffers || []);
+  const [discount, setDiscount] = useState(intialDiscount || []);
   const [clear, setClear] = useState(false);
 
   useEffect(() => {
@@ -57,9 +57,11 @@ export const Sidebar = () => {
 
     setRating(newRating);
   };
+
+
   const handleOffers = (e) => {
     const { value } = e.target;
-    console.log(value);
+    
     let newOffers = [...offers];
     if (newOffers.includes(value)) {
       newOffers = newOffers.filter((el) => el !== value);
@@ -68,7 +70,10 @@ export const Sidebar = () => {
     }
 
     setOffers(newOffers);
+    
   };
+
+  
   const handleDsicount = (e) => {
     const { value } = e.target;
     console.log(value);
@@ -100,9 +105,7 @@ export const Sidebar = () => {
       rating,
       discount,
     };
-
-    setSearchParams(params);
-
+  setSearchParams(params);
   }
 
   return (
