@@ -158,6 +158,11 @@ const DIV = styled.div`
     .products{
     grid-template-columns: repeat(4, 210px);
   }
+  .no-products-message{
+    width: 500px;
+    height: 70vh;
+   
+  }
 }
 
   @media screen and (max-width: 1291px) {
@@ -167,6 +172,11 @@ const DIV = styled.div`
     .products {
       grid-template-columns: repeat(4, 180px);
     }
+    .no-products-message{
+    width: 400px;
+    height: 70vh;
+   
+  }
   }
 
   @media screen and (max-width: 1121px) {
@@ -181,10 +191,20 @@ const DIV = styled.div`
     .products {
       grid-template-columns: repeat(2, 200px);
     }
+    .no-products-message{
+    width: 300px;
+    height: 70vh;
+   
+  }
   }
   @media screen and (max-width: 749px) {
     .sorting {
       display: none;
     }
+    .no-products-message{
+    width: 200px;
+    height: 70vh;
+   
+  }
   }
 `;
