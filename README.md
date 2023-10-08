@@ -51,6 +51,16 @@ I focused on creating an intuitive and visually appealing user interface, paying
 
 [GitHub Link](https://github.com/shivakrishnak13/revent-assignment)
 
+
+## Lessons Learned
+
+In completing this assignment, I gained valuable experience in:
+
+- Implementing responsive design for various screen sizes (mobile, tablet, large screens).
+- Utilizing React.js to build dynamic web components.
+- Effectively implementing filtering, sorting, and search functionalities.
+
+
 ## How to Run Locally
 
 To run this project locally, follow these steps:
@@ -65,14 +75,3 @@ cd revent-assignment/frontend
 npm install
 
 npm run start
-
-
-
-## Lessons Learned
-
-In completing this assignment, I gained valuable experience in:
-
-- Implementing responsive design for various screen sizes (mobile, tablet, large screens).
-- Utilizing React.js to build dynamic web components.
-- Effectively implementing filtering, sorting, and search functionalities.
-
