@@ -27,14 +27,17 @@ The goal of this assignment was to create a responsive web component that allows
 
 ## Additional Libraries/Frameworks
 
-- Chakra UI
-- Styled-Components
-- Redux
-- Swiper
+- Chakra UI: Chakra UI provides a set of accessible and composable components for building React applications. I chose it for its simplicity and the ability to quickly create visually appealing interfaces.
+
+- Styled-Components: Styled-Components allows for component-level styles to be written in JavaScript. It provides a clean and organized way to style React components, making it easy to manage CSS in a component-based architecture.
+
+- Redux: Redux is a predictable state container for JavaScript apps. It helps manage the global state of the application, which is crucial for handling complex interactions and state changes in a React application.
+
+- Swiper: Swiper is a touch-enabled, responsive slider library. I integrated it to enhance the user experience when navigating through product images.
 
 ## Data Source
 
-- JSON Server
+- JSON Server: JSON Server is a full fake REST API tool that allows for rapid prototyping and testing. It provided a simple way to simulate a backend API for this project.
 
 ## Design Considerations
 
@@ -42,11 +45,28 @@ I focused on creating an intuitive and visually appealing user interface, paying
 
 ## Demo
 
-https://revent-pearl.vercel.app
+[Demo Link](https://revent-pearl.vercel.app)
 
 ## GitHub Repository
 
-https://github.com/shivakrishnak13/revent-assignment
+[GitHub Link](https://github.com/shivakrishnak13/revent-assignment)
+
+## How to Run Locally
+
+To run this project locally, follow these steps:
+
+1. Clone the repository to your local machine.
+
+```bash
+git clone https://github.com/shivakrishnak13/revent-assignment
+
+cd revent-assignment/frontend
+
+npm install
+
+npm run start
+
+
 
 ## Lessons Learned
 
