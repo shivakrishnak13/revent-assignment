@@ -66,6 +66,23 @@ export const ProductPage = () => {
     toggleOptions(false);
   };
 
+  const applyPricerange = () =>{
+    let params = {
+    
+      pricefrom: sliderValues[0] * 1000,
+      priceto: sliderValues[1] * 1000,
+    };
+    setSearchParams(params);
+  }
+
+  const handleClearRange = () =>{
+    setSliderValues([0, 80]);
+    let params = {
+
+    };
+     setSearchParams(params);
+  }
+
   return (
     <DIV>
       <Sidebar />
@@ -122,8 +139,8 @@ export const ProductPage = () => {
                 </RangeSlider>
               </div>
               <div className="buttons">
-                <Button backgroundColor={'teal'}>Apply</Button>
-                <Button background={'red'}>Clear</Button>
+                <Button onClick={applyPricerange} backgroundColor={'teal'}>Apply</Button>
+                <Button onClick={handleClearRange} background={'red'}>Clear</Button>
               </div>
             </div>
           )}

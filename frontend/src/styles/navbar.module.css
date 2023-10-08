@@ -22,6 +22,10 @@
   z-index: 100;
 }
 
+.nav a{
+  font-weight: 700;
+  
+}
 .categories {
   width: 40%;
   list-style: none;
