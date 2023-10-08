@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/swiper-bundle.css';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import StarRating from "./StarRating";
-
 
 export const ProductCard = ({
   id,
@@ -17,32 +16,27 @@ export const ProductCard = ({
   rating,
   price,
   images,
+  discount,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
+  let hoverTimeout;
+  const handleMouseEnter = () => {
+    hoverTimeout = setTimeout(() => {
+      setIsHovered(true);
+    }, 300); 
+  };
 
-  function truncateDescription(description) {
-    const maxLength = 40; 
-    if (description.length <= maxLength) {
-      return description; 
-    }
-  
-    const truncatedDescription = description.slice(0, maxLength);
-  
-    if (truncatedDescription[truncatedDescription.length - 1] === " ") {
-      return `${truncatedDescription.slice(0, -1)}...`;
-    }
-    const lastSpaceIndex = truncatedDescription.lastIndexOf(" ");
-    return `${truncatedDescription.slice(0, lastSpaceIndex)}...`;
-  }
-  
-
-  
+  const handleMouseLeave = () => {
+    clearTimeout(hoverTimeout); 
+    setIsHovered(false);
+  };
 
   return (
     <DIV
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="main"
+      onMouseEnter={()=> handleMouseEnter()}
+      onMouseLeave={() => handleMouseLeave()}
     >
       {isHovered ? (
         <Swiper
@@ -60,7 +54,7 @@ export const ProductCard = ({
         >
           {images.map((imageUrl, index) => (
             <SwiperSlide key={index}>
-              <img src={imageUrl} alt={`Slide ${index + 1}`} />
+              <img className="img" src={imageUrl} alt={`Slide ${index + 1}`} />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -73,14 +67,14 @@ export const ProductCard = ({
       <div className="details">
         <h2>{maincategory}</h2>
         <h3>{title}</h3>
+        <div className="description">{description}</div>
+        <div className="rating">
+          <StarRating rating={rating} />
+        </div>
         <p>
           <strong>₹{price}.0</strong>
+          <span>({discount}% OFF)</span>
         </p>
-        <div className="rating">
-
-        <StarRating rating={rating}/> 
-        </div>
-        <div className="description">{truncateDescription(description)}</div>
       </div>
     </DIV>
   );
@@ -91,13 +85,49 @@ const DIV = styled.div`
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   border-radius: 0.5rem;
   width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    .main {
+      width: 101%;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+      border-radius: 0.5rem;
+    }
+    .img {
+      transform: scale(1.05);
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+
+      border: 2px solid red;
+    }
+    .image {
+    width: 100%;
+
+    img {
+      width: 100%;
+      border-top-left-radius: 0.5rem;
+      border-top-right-radius: 0.5rem;
+      box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    }
+  }
+  }
+
+  .img {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  }
 
   .image {
     width: 100%;
 
     img {
       width: 100%;
-      
       border-top-left-radius: 0.5rem;
       border-top-right-radius: 0.5rem;
       box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
@@ -115,42 +145,50 @@ const DIV = styled.div`
       word-wrap: break-word;
     }
     h3 {
+      font-family: "Rubik", sans-serif;
       font-size: 1.2rem;
       margin-bottom: 0.2em;
-      font-family: "Poppins", sans-serif;
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-weight: 400;
     }
   }
 
   .mySwiper {
     width: 100%;
     z-index: -10;
-    
   }
 
   .description {
-      font-size: .8rem;
-      line-height: 1.5;
-      color: #535766;
+    font-size: 0.8rem;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #535766;
+  }
+
+  .rating {
+    padding: 5px 0;
+  }
+  p {
+    span {
+      font-size: 0.6rem;
+      margin-left: 0.2rem;
+      color: #1a4c7b;
     }
+  }
 
-   .rating{
-    padding: 4px 0;
-   }
-
-  @media screen and (max-width:1291px){
-    .details{
-      h2{
+  @media screen and (max-width: 1291px) {
+    .details {
+      h2 {
         font-size: 15px;
       }
-      h3{
+      h3 {
         font-size: 15px;
       }
     }
   }
-
-
 `;

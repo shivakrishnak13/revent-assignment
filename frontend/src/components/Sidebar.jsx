@@ -50,14 +50,14 @@ export const Sidebar = () => {
             <option value="500">500</option>
             <option value="1000">1000</option>
             <option value="5000">5000</option>
-            <option value={sliderValues[0]*1000}>{sliderValues[0]*1000}</option>
+            <option defaultValue={sliderValues[0]*1000}>{sliderValues[0]*1000}</option>
           </Select>
           <p>to</p>
           <Select placeholder='max' size='xs'  w={'100px'} value={sliderValues[1]*1000} >
             <option value="1000">10000</option>
             <option value="20000">20000</option>
             <option value="100000">10000</option>
-            <option value={sliderValues[1]*1000}>{sliderValues[1]*1000}</option>
+            <option defaultValue={sliderValues[1]*1000}>{sliderValues[1]*1000}</option>
           </Select>
           </div>
         </div>
